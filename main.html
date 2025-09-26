@@ -1,105 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
 
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-        }
+    .modal {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+    }
 
-        .modal {
-            background-color: white;
-            padding: 20px;
-            width: 600px;    
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
+    /* Modal box */
+    .modal-content {
+      background: white;
+      width: 400px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
 
-        .modal-heading {
-            padding: 10px 20px;
-            background-color: rgb(90, 147, 5);
-            color: white;
-        }
+    .modal-header {
+      background: #4EAB4D;
+      color: white;
+      padding: 10px 15px;
+    }
 
-        .modal-body {
-            padding: 15px 20px;
-            background-color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .modal-body {
+      padding: 20px;
+	  display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        .close {
-            background: none;
-            border: none;
-            font-weight: bold;
-            font-size: 18px;
-            cursor: pointer;
-        }
-	</style>
+    .close-modal {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-	<button id="open">Open Modal</button>
 
-    <script>
-        let btn = document.querySelector("#open");
+  <button id="openModal">Open Modal</button>
 
-        btn.addEventListener("click", () => {
-            // Create overlay
-            let overlay = document.createElement("div");
-            overlay.className = "overlay";
+  <script>
+    const btn = document.getElementById("openModal");
 
-            // Create modal
-            let modal = document.createElement("div");
-            modal.className = "modal";
+    btn.addEventListener("click", () => {
+      
+      const modal = document.createElement("div");
+      modal.className = "modal";
 
-            // Modal heading
-            let modalheader = document.createElement("div");
-            modalheader.className = "modal-heading";
-            let h2 = document.createElement("h2");
-            h2.innerText = "Modal Header";
-            modalheader.append(h2);
+      const modalContent = document.createElement("div");
+      modalContent.className = "modal-content";
 
-            // Modal body
-            let modalbody = document.createElement("div");
-            modalbody.className = "modal-body";
-            let p = document.createElement("p");
-            p.innerText = "Modal Body Content";
+      const modalHeader = document.createElement("div");
+      modalHeader.className = "modal-header";
 
-            // Close button
-            let closebtn = document.createElement("button");
-            closebtn.innerText = "×";
-            closebtn.className = "close";
+      const h2 = document.createElement("h2");
+      h2.innerText = "Modal Header";
 
-            modalbody.append(p, closebtn);
-            modal.append(modalheader, modalbody);
-            overlay.append(modal);
-            document.body.append(overlay);
+      const closeBtn = document.createElement("button");
+      closeBtn.className = "close-modal";
+      closeBtn.innerText = "X";
 
-            // Close modal when clicking X
-            closebtn.addEventListener("click", () => {
-                overlay.remove();
-            });
+      modalHeader.append(h2);
 
-            // Close modal when clicking outside
-            overlay.addEventListener("click", (e) => {
-                if (e.target === overlay) {
-                    overlay.remove();
-                }
-            });
-        });
-    </script>
+      const modalBody = document.createElement("div");
+      modalBody.className = "modal-body";
+
+      const p = document.createElement("p");
+      p.innerText = "Modal Body Content";
+
+      modalBody.append(p,closeBtn);
+
+      modalContent.append(modalHeader, modalBody);
+      modal.appendChild(modalContent);
+      document.body.appendChild(modal);
+
+      closeBtn.addEventListener("click", () => {
+        modal.remove();
+      });
+
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.remove();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
