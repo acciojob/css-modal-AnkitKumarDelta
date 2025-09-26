@@ -81,7 +81,8 @@ btn.addEventListener("click", () => {
 
     closebtn.addEventListener("click",()=>{
         document.body.classList.remove("grey");
-       document.body.removeChild(modal);
+       // document.body.removeChild(modal);
+		modal.style.display="none";
     });
 
 	modalcontent.append(modalheader);
