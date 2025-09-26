@@ -7,15 +7,13 @@
   <style>
     /* overlay hidden by default */
     .modal {
-      display: none;                /* hidden until shown via JS */
+      display: block;               
       position: fixed;
-      inset: 0;                     /* top:0; right:0; bottom:0; left:0 */
+      inset: 0;                     
       background: rgba(0,0,0,0.5);
       z-index: 999;
     }
 
-    /* center modal-content using absolute positioning
-       so the overlay can remain display:block when visible */
     .modal-content {
       position: absolute;
       top: 50%;
@@ -57,7 +55,7 @@
     const btn = document.getElementById('openModal');
 
     btn.addEventListener('click', () => {
-      // Create modal only once — subsequent clicks will reuse it
+    
       let modal = document.querySelector('.modal');
       if (!modal) {
         modal = document.createElement('div');
@@ -70,28 +68,27 @@
         modalHeader.className = 'modal-header';
         const h2 = document.createElement('h2');
         h2.innerText = 'Modal Header';
-        const closeBtn = document.createElement('button');
-        closeBtn.className = 'close-modal';
-        closeBtn.innerText = '×';
-
-        modalHeader.append(h2);
+		modalHeader.append(h2);
 
         const modalBody = document.createElement('div');
         modalBody.className = 'modal-body';
         const p = document.createElement('p');
         p.innerText = 'Modal Body Content';
+		const closeBtn = document.createElement('button');
+        closeBtn.className = 'close-modal';
+        closeBtn.innerText = '×';
         modalBody.append(p,closeBtn);
 
-        modalContent.append(modalHeader, modalBody);
-        modal.appendChild(modalContent);
+		modalContent.append(modalHeader, modalBody);
+		
+		modal.appendChild(modalContent);
+		
         document.body.appendChild(modal);
 
-        // Close button hides (does not remove) the modal
         closeBtn.addEventListener('click', () => {
           modal.style.display = 'none';
         });
 
-        // Clicking outside modal-content (on overlay) hides the modal
         modal.addEventListener('click', (e) => {
           if (e.target === modal) {
             modal.style.display = 'none';
@@ -99,8 +96,6 @@
         });
       }
 
-      // Show the modal using inline style so computed display === 'block'
-      // (this matches the Cypress expectation in your test).
       modal.style.display = 'block';
     });
   </script>
