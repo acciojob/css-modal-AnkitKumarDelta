@@ -4,11 +4,93 @@
 
 <head>
 	<link rel="stylesheet" href="styles.css">
+    <style>
+        .close{
+            background: none;
+            border: none;
+            font-weight: 600;
+            font-style: normal;
+        }
+        .close:hover{
+            cursor: pointer;
+        }
+        .modal {
+    background-color: white;
+    padding: 20px;
+    margin: auto;
+    width: 600px;     
+    height: auto;     
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-heading {
+    padding: 10px 20px;
+    background-color: #4EAB4D;
+}
+
+.modal-body {
+    padding: 15px 20px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;  /* vertically align items */
+}
+
+.modal-content {
+    height: auto;   /* let it shrink naturally */
+}
+
+        .grey{
+            background-color: grey;
+        }
+    </style>
 </head>
 
 <body>
 	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
+	<button id="open">Open Model</button>
+    <script>
+        let btn = document.querySelector("#open");
+
+btn.addEventListener("click", () => {
+	document.body.classList.add("grey");
+	let modal = document.createElement("div");
+    let modalcontent = document.createElement("div");
+	let modalheader = document.createElement("div");
+	let modalbody = document.createElement("div");
+	
+	modal.className = "modal";
+	modalcontent.className = "modal-content";
+	modalheader.className = "modal-heading";
+	modalbody.className = "modal-body";
+	
+	let h2 = document.createElement("h2");
+	h2.innerText = "Modal Header";
+    h2.style.color = "white";
+	modalheader.append(h2);
+	
+	let p = document.createElement("p");
+	p.innerText = "Modal Body Content";
+	modalbody.append(p);
+
+    let closebtn = document.createElement("button");
+    closebtn.innerText = "X";
+    closebtn.className = "close";
+
+    modalbody.append(closebtn);
+
+    closebtn.addEventListener("click",()=>{
+        document.body.classList.remove("grey");
+       document.body.removeChild(modal);
+    });
+
+	modalcontent.append(modalheader);
+	modalcontent.append(modalbody);
+	modal.append(modalcontent);
+
+	document.body.append(modal);
+});
+
 </script>
 
 </body>

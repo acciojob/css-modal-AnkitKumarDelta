@@ -1,1 +1,29 @@
-/*  your css code here. If applicable */
+/* let btn = document.querySelector("#open");
+btn.addEventListener("click", () => {
+	
+	let modal = document.createElement("div");
+    let modalcontent = document.createElement("div");
+	let modalheader = document.createElement("div");
+	let modalbody = document.createElement("div");
+	
+	modal.className = "modal";
+	modalcontent.className = "modal-content";
+	modalheader.className = "modal-heading";
+	modalbody.className = "modal-body";
+	
+	let h2 = document.createElement("h2");
+	h2.innerText = "Modal Header";
+	h2.style.color = "white";
+	modalheader.append(h2);
+	
+	let p = document.createElement("p");
+	p.innerText = "Modal Body Content";
+	modalbody.append(p);
+	
+	modalcontent.append(modalheader);
+	modalcontent.append(modalbody);
+	modal.append(modalcontent);
+
+	document.body.append(modal);
+});
+ */
